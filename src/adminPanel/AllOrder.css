@@ -1,0 +1,70 @@
+/* src/styles/AllOrders.css */
+
+.all-orders-container {
+  padding: 20px;
+}
+
+.add-order-btn {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add-order-btn:hover {
+  background-color: #219150;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.orders-table th {
+  background-color: #f2f2f2;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #2980b9;
+  color: #fff;
+}
+
+.edit-btn:hover {
+  background-color: #1c5980;
+}
+
+.delete-btn {
+  background-color: #c0392b;
+  color: #fff;
+}
+
+.delete-btn:hover {
+  background-color: #a93226;
+}
+
+.no-orders {
+  text-align: center;
+  padding: 20px;
+  color: #7f8c8d;
+}

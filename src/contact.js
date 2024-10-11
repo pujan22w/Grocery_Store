@@ -1,0 +1,57 @@
+import React from "react";
+import "./contact.css";
+import { NavBar } from "./navbar.jsx";
+function ContactUs() {
+  return (
+    <>
+      <header class="header-section">
+        <NavBar />
+      </header>
+
+      {/* <!-- Contact Section --> */}
+      <section id="contact" class="contact-section">
+        <div class="contact-container">
+          <h2>Get in Touch</h2>
+          <p>
+            We would love to hear from you. Drop us a message or reach out via
+            social media.
+          </p>
+          <form action="#" method="POST" class="contact-form">
+            <div className="input-group">
+              <input type="text" placeholder="Your Name" required />
+            </div>
+            <div className="input-group">
+              <input type="email" placeholder="Your Email" required />
+            </div>
+            <div className="input-group">
+              <textarea placeholder="Your Message" rows="4" required></textarea>
+            </div>
+            <button type="submit" className="send-button">
+              Send Message
+            </button>
+          </form>
+          <div className="social-icons">
+            <a href="#" className="social-icon facebook">
+              <i className="fa-brands fa-facebook"></i>
+            </a>
+            <a href="#" className="social-icon instagram">
+              <i className="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" className="social-icon linkedin">
+              <i className="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="#" className="social-icon telegram">
+              <i className="fa-brands fa-telegram"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <p>&copy; 2024 GroceryStore. All rights reserved.</p>
+      </footer>
+    </>
+  );
+}
+
+export default ContactUs;

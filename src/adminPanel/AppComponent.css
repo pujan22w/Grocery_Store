@@ -1,0 +1,30 @@
+/* src/App.css */
+.app-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 250px; /* Width of the sidebar */
+  padding: 20px;
+  flex: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+/* 404 and Logout Pages Styling */
+.logout-container,
+.not-found-container {
+  padding: 20px;
+  text-align: center;
+}

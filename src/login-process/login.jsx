@@ -1,0 +1,124 @@
+import React, { useContext, useState } from "react";
+import {UserAuthContext} from "./loginauth.jsx";
+import { useNavigate } from "react-router-dom";
+
+import axios from "../lib/axios";
+import "./login.css";
+function Login() {
+  const { login } = useContext(UserAuthContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    const result = await login(email, password);
+    if (result.success) {
+      setSuccess("Login successful. Welcome!");
+      // Optionally, use a more user-friendly notification system
+      alert("Login Successful");
+      navigate("/"); // Redirect to home or desired page
+    } else {
+      setError(result.message);
+      alert(result.message);
+    }
+  };
+
+  // try {
+  //   // Sending login credentials to the backend API
+  //   const response = await axios.post(
+  //     "http://localhost:8000/api/v1/users/login",
+  //     {
+  //       email,
+  //       password,
+  //     }
+  //   );
+  //   if (response.data) {
+  //     // login();
+  //     setSuccess("Login successful. Welcome Admin!");
+  //     alert("Login Successful");
+  //     navigate("/");
+  //   } else {
+  //     setError("Please Enter Correct email and password");
+  //   }
+  // } catch (error) {
+  //   if (error.response) {
+  //     setError(`Error 404 Found || "Login failed."`);
+  //     alert("Plaese enter correctly");
+  //   } else if (error.request) {
+  //     setError("No response from server. Please try again later.");
+  //   } else {
+  //     setError(`Error: ${error}`);
+  //   }
+  // }
+  return (
+    <>
+      <div className="container">
+        <div className="login-section">
+          <div className="login-content">
+            <a href="/">
+              {" "}
+              <img
+                src="./photos\grocery-store.jpg"
+                alt="Logo"
+                className="logo"
+              />{" "}
+            </a>
+            <h2>Login to Your Grocery Account</h2>
+            <p>Shop fresh & organic groceries</p>
+            <div className="social-login">
+              <button className="social-btn fb">
+                <i className="fab fa-facebook-f"></i>
+              </button>
+              <button className="social-btn google">
+                <i className="fab fa-google"></i>
+              </button>
+            </div>
+            <p>OR</p>
+            <form className="login-form" onSubmit={handleLogin}>
+              <input
+                type="email"
+                placeholder="Email"
+                name="email"
+                autoComplete="off"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                autoComplete="off"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <a href="/forgotpassword" className="forgot">
+                Forgot Password?
+              </a>
+              <button type="submit" className="login-btn">
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+        <div className="signup-section">
+          <div className="signup-content">
+            <h2>New Here?</h2>
+            <p>
+              Sign up and get the freshest groceries delivered to your door!
+            </p>
+            <a href="/signup" className="signup-btn">
+              Sign Up
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export { Login };

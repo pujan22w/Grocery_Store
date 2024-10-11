@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #4caf50;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.navbar li {
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #ffd700;
+}
+
+.hero {
+  height: 80vh;
+  background-image: url("grocery.jpeg"); /* Add your grocery theme background image */
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.offers {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.offer {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 10px; /* Margin for spacing */
+  flex: 1 1 200px; /* Flex-grow, flex-shrink, and base size */
+  cursor: pointer;
+}
+
+.offer:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.team {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.team-member {
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  display: inline-block;
+  width: 350px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.purchase {
+  background-color: #f8f8f8;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.get-product a {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.get-product a:hover {
+  background-color: blue !important;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center;
+  }
+
+  .offers {
+    flex-direction: column; /* Stack offers vertically */
+    align-items: center;
+  }
+
+  .offer {
+    width: 90%; /* Full width for smaller screens */
+  }
+
+  .team-member {
+    width: 80%; /* Full width for smaller screens */
+    margin: 5px 0; /* Adjust margins for smaller screens */
+  }
+
+  .purchase {
+    padding: 30px 0; /* Reduce padding for smaller screens */
+  }
+
+  .get-product {
+    width: 80%; /* Full width for button on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .get-product {
+    font-size: 14px; /* Smaller font size on very small screens */
+  }
+}

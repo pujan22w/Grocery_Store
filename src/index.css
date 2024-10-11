@@ -1,13 +1,355 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+.header-section {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.logo-link {
+  text-decoration: none; /* underline hataidinchha */
+}
+
+.logo-link .logo {
+  color: white; /* logo ko color anusaar change garni */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo-link:hover .logo {
+  color: #ff6347; /* color change hanchha */
+}
+
+/* Header Section */
+.header-section {
+  background-image: url(3.jpeg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.header-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Optional dark overlay */
+  z-index: -1;
+}
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo {
+  /* font-size: 19px; */
+  font-weight: bold;
+  color: white;
+  width: 20%;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header-content h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.header-content p {
+  font-size: 24px;
+  color: white;
+}
+
+.header-content a {
+  text-decoration: none;
+}
+
+.header-section nav ul li a:hover {
+  color: #ff6347;
+}
+
+.signin-button {
+  background-color: #ff6347;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signin-button:hover {
+  background-color: #e55347;
+  transform: scale(1.05);
+}
+
+/* About Section */
+.about-section {
+  padding: 100px 50px;
+  background-image: url(./5.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+.logout-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.user-info span{
+  text-transform: capitalize;
+}
+.logout-button:hover {
+  background-color: #d32f2f;
+}
+
+.about-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay to make text pop */
+  z-index: -1;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+.about-text {
+  width: 50%;
+  animation: fadeIn 2s ease-out;
+}
+
+.about-text h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.learn-more-button {
+  background-color: #f44336;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+  background-color: #c7322a;
+}
+
+.about-image {
+  width: 45%;
+  padding: 10px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: slideIn 1.5s ease-out;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text,
+  .about-image {
+    width: 100%;
+  }
+
+  .about-image {
+    margin-top: 20px;
+  }
+}
+
+/* Products Section */
+.product-section {
+  padding: 50px;
+  background-color: rgb(255, 255, 255, 1);
+  text-align: center;
+}
+
+.product-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .product-item {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-item {
+    width: 100%;
+  }
+}
+
+.product-item {
+  text-align: center;
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+}
+
+.product-item h3 {
+  font-size: 24px;
+}
+
+.product-item p {
+  font-size: 16px;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 50px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.contact-section .icons a {
+  margin: 0 15px;
+  font-size: 24px;
+  color: #333;
+}
+
+.contact-section .icons a:hover {
+  color: #ff6347;
+}
+
+/* Footer Section */
+.footer {
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  margin-top: auto;
+}
+
+/* product page ko laagi css*/
+/* Header Section */

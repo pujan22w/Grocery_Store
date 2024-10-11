@@ -1,0 +1,51 @@
+body {
+  background-color: #fff;
+}
+.admin-header {
+  display: flex;
+  justify-content: center;
+  margin: 50px 0px 10px 0px;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+.admin-header h4 {
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin-left: 50px;
+}
+.admin-form-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin-login-button {
+  width: 50%;
+  margin-left: 70px;
+  background-color: green;
+}
+
+.admin-login-button:hover {
+  background-color: blue;
+}
+.error {
+  font-size: 20px;
+}
+
+@media (max-width: 420px) {
+  form {
+    margin-right: 40px;
+  }
+  .admin-header {
+    margin-right: 20px;
+  }
+}

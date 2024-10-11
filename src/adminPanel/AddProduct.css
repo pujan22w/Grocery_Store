@@ -1,0 +1,72 @@
+/* src/styles/AddProduct.css */
+.add-product-container {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group input[type="file"] {
+  padding: 8px;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+.checkbox-group {
+  flex-direction: row;
+  align-items: center;
+}
+
+.checkbox-group input {
+  margin-right: 10px;
+}
+
+.product-image-preview {
+  margin-top: 10px;
+  width: 100px;
+  height: auto;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.save-btn {
+  background-color: #16a085;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #13856f;
+}
+
+.cancel-btn {
+  background-color: #7f8c8d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #616f77;
+}
