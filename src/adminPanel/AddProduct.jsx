@@ -13,7 +13,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
     image: "",
     price: "",
     weight: "",
-    inStock: true,
+    isavailable: true,
   });
 
   const [error, setError] = useState("");
@@ -65,8 +65,9 @@ const AddProduct = ({ categories, addProduct, products }) => {
     formData.append("productImage", product.image);
     formData.append("price", product.price);
     formData.append("weight", product.weight);
-    formData.append("isavailable", product.inStock);
-    formData.append("stock", 50);
+    formData.append("isavailable", product.isavailable);
+    console.log(product);
+    formData.append("stock", product.stock);
     try {
       const response = await axios.post(
         "http://localhost:8000/api/v1/product/register",
@@ -177,12 +178,12 @@ const AddProduct = ({ categories, addProduct, products }) => {
         <div className="form-group checkbox-group">
           <input
             type="checkbox"
-            name="inStock"
-            checked={product.inStock}
+            name="is-available"
+            checked={product.isavailable}
             onChange={handleChange}
-            id="inStockCheck"
+            id="is-available"
           />
-          <label htmlFor="inStockCheck">In Stock</label>
+          <label htmlFor="is-available">Is Available</label>
         </div>
 
         {/* Display Error Message */}

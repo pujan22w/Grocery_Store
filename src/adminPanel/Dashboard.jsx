@@ -4,15 +4,15 @@ import "./Dashboard.css";
 
 const Dashboard = (props) => {
   const { products, categories } = props;
-  console.log(props);
+  console.log(products);
   const totalProducts = useMemo(() => products.length, [products]);
   const totalCategories = useMemo(() => categories.length, [categories]);
   const productsInStock = useMemo(
-    () => products.filter((product) => product.inStock).length,
+    () => products.filter((product) => product.isavailable).length,
     [products]
   );
   const productsOutOfStock = useMemo(
-    () => products.filter((product) => !product.inStock).length,
+    () => products.filter((product) => !product.isavailable).length,
     [products]
   );
   const averagePrice = useMemo(() => {

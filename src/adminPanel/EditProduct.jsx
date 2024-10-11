@@ -68,7 +68,7 @@ const EditProduct = ({ products, categories, updateProduct }) => {
           category: product.category,
           price: product.price,
           weight: product.weight,
-          isavailable: true,
+          isavailable: product.isavailable,
           stock: 50,
         }
       );
