@@ -72,10 +72,10 @@ const EditProduct = ({ products, categories, updateProduct }) => {
           stock: 50,
         }
       );
-      console.log(response);
-      console.log("Product updated successfully:", response.data);
       const updatedProduct = response.data.data;
+
       updateProduct(ProductData, updatedProduct);
+      alert("Product Updated successfully");
       navigate("/admin/all-products");
       // Optionally, redirect or show a success message
     } catch (err) {

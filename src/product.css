@@ -22,7 +22,9 @@
   background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
   z-index: -1;
 }
-
+.header-content h1 {
+  color: white;
+}
 .products-section {
   padding: 50px;
   background-color: #fff;
@@ -33,6 +35,67 @@
   font-size: 36px;
   margin-bottom: 20px;
   color: #333;
+}
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.category-buttons {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.category-btn:hover {
+  background-color: #ddd;
+}
+
+.category-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.load-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+.load-more,
+.load-less {
+  padding: 10px 20px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.load-less {
+  background-color: #dc3545;
+}
+
+.load-more:hover {
+  background-color: #218838;
+}
+
+.load-less:hover {
+  background-color: #c82333;
 }
 
 /* Grid for product listings */
@@ -105,6 +168,39 @@
 .products-item:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.products-grid .addtocart {
+  color: #fff;
+}
+/* product.css */
+
+.notification {
+  position: fixed;
+  top: 80px; /* Adjust based on your header height */
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
 }
 
 @media (max-width: 768px) {

@@ -5,11 +5,11 @@ function About() {
   return (
     <>
       <NavBar />
-      <header class="hero">
+      <header className="hero">
         <h2>Fresh Groceries Delivered To Your Doorstep!</h2>
       </header>
-      <section class="offers">
-        <div class="offer">
+      <section className="offers">
+        <div className="offer">
           <h3>24 Hour Delivery</h3>
           <p>
             At Puzu Grocery Store, we're committed to providing you with
@@ -20,7 +20,7 @@ function About() {
             satisfying. Your convenience is our priority!
           </p>
         </div>
-        <div class="offer">
+        <div className="offer">
           <h3>Free Delivery in Butwal and Bhairahawa</h3>
           <p>
             Enjoy hassle-free shopping with Puzu Grocery Store! Get free
@@ -32,9 +32,9 @@ function About() {
         </div>
       </section>
 
-      <section class="team">
+      <section className="team">
         <h2>Our Team</h2>
-        <div class="team-member ceo">
+        <div className="team-member ceo">
           <h3>Arpin Bhat - CEO</h3>
           <p>
             As the Chief Executive Officer of Puzu Grocery Store, Arpin Bhat
@@ -45,7 +45,7 @@ function About() {
             initiatives.
           </p>
         </div>
-        <div class="team-member accountant">
+        <div className="team-member accountant">
           <h3>Raj Himal - Accountant</h3>
           <p>
             As the Accountant at Puzu Grocery Store, Raj Himal plays a crucial
@@ -56,7 +56,7 @@ function About() {
             contributing to our overall growth and success.
           </p>
         </div>
-        <div class="team-member worker">
+        <div className="team-member worker">
           <h3>Shiva Raj Giri - Worker</h3>
           <p>
             Shiva Raj Giri is an integral part of the Puzu Grocery Store team,
@@ -69,8 +69,8 @@ function About() {
         </div>
       </section>
 
-      <section class="purchase">
-        <div class="purchase-container">
+      <section className="purchase">
+        <div className="purchase-container">
           <h2>Wanna Buy a Product?</h2>
           <div className="get-product">
             <a href="/product">Get Product</a>
@@ -78,7 +78,7 @@ function About() {
         </div>
       </section>
 
-      <footer class="footer">
+      <footer className="footer">
         <p>© 2024 Puzu Grocery Store. All rights reserved.</p>
       </footer>
     </>

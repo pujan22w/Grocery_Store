@@ -4,19 +4,19 @@ import { NavBar } from "./navbar.jsx";
 function ContactUs() {
   return (
     <>
-      <header class="header-section">
+      <header className="header-section">
         <NavBar />
       </header>
 
       {/* <!-- Contact Section --> */}
-      <section id="contact" class="contact-section">
-        <div class="contact-container">
+      <section id="contact" className="contact-section">
+        <div className="contact-container">
           <h2>Get in Touch</h2>
           <p>
             We would love to hear from you. Drop us a message or reach out via
             social media.
           </p>
-          <form action="#" method="POST" class="contact-form">
+          <form action="#" method="POST" className="contact-form">
             <div className="input-group">
               <input type="text" placeholder="Your Name" required />
             </div>
@@ -37,11 +37,8 @@ function ContactUs() {
             <a href="#" className="social-icon instagram">
               <i className="fa-brands fa-instagram"></i>
             </a>
-            <a href="#" className="social-icon linkedin">
-              <i className="fa-brands fa-linkedin"></i>
-            </a>
-            <a href="#" className="social-icon telegram">
-              <i className="fa-brands fa-telegram"></i>
+            <a href="#" className="social-icon tiktok">
+              <i className="fa-brands fa-tiktok"></i>
             </a>
           </div>
         </div>

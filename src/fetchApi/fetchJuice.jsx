@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../lib/axios.js";
-function FetchFruits({ onFetch }) {
+function FetchJuice({ onFetch }) {
   const [data, setData] = useState([]);
   const shuffleArray = (array) => {
     const shuffled = [...array];
@@ -13,7 +13,7 @@ function FetchFruits({ onFetch }) {
   const fetchData = async () => {
     try {
       const reponse = await axios.get(
-        "http://localhost:8000/api/v1/product/filter?category=Fruits"
+        "http://localhost:8000/api/v1/product/filter?category=Juice"
       );
       console.log(reponse.data.data.products);
       // const data = await reponse.json();
@@ -31,4 +31,4 @@ function FetchFruits({ onFetch }) {
   return null;
 }
 
-export default FetchFruits;
+export default FetchJuice;

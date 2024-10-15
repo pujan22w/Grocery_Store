@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
-function FetchVegetables() {
+import axios from "../lib/axios.js";
+function FetchVegetables({ onFetch }) {
   const [data, setData] = useState([]);
+  const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
   const fetchData = async () => {
-    const reponse = await fetch(
-      "http://localhost:8000/api/v1/product/filter?category=Vegetables"
-    );
-    let data = await reponse.json();
-    setData(data?.data?.products);
+    try {
+      const reponse = await axios.get(
+        "http://localhost:8000/api/v1/product/filter?category=Vegetables"
+      );
+      console.log(reponse.data.data.products);
+      // const data = await reponse.json();
+      let products = reponse?.data?.data.products || [];
+      const shuffledProducts = shuffleArray(products);
+      setData(shuffledProducts);
+      onFetch(shuffledProducts);
+    } catch (error) {
+      console.error("Error fetching fruits:", error);
+    }
   };
   useEffect(() => {
     fetchData();
   }, []);
-
-  return (
-    <>
-      {data.map((e) => {
-        return (
-          <>
-            <div className="products-item">
-              <img src={e.productImage} alt={e.productname} />
-              <h4>{e.productname}</h4>
-              <p>Rs.{e.price}</p>
-              <button>Add to Cart</button>
-            </div>
-          </>
-        );
-      })}
-    </>
-  );
+  return null;
 }
+
 export default FetchVegetables;

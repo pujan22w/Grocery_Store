@@ -8,12 +8,12 @@ import { Login } from "./login-process/login.jsx";
 import SignUpForm from "./login-process/signin.jsx";
 import { ForgotPassword } from "./login-process/forgotpassword.jsx";
 import { ItemsProducts } from "./items-description.jsx";
-import AdminPanel from "./admin/admin-logout.jsx";
 import AdminLog from "./admin/admin-login.jsx";
 import ProtectedRoute from "./admin/panel-protect.jsx";
 import { AuthContext } from "./admin/admin-auth.jsx";
 // FOr admin Panel
 import AppAdminComponent from "./adminPanel/AppComponent.jsx";
+import AddToCart from "./addtocart/AddtoCart.js";
 function App() {
   const { isAuth } = useContext(AuthContext);
   return (
@@ -29,6 +29,7 @@ function App() {
           <Route path="forgotpassword" element={<ForgotPassword />}></Route>
           <Route path="apple" element={<ItemsProducts />}></Route>
           <Route path="/admin/login" element={<AdminLog />}></Route>
+          <Route path="/cart" element={<AddToCart />}></Route>
           <Route
             path="/admin/*"
             element={

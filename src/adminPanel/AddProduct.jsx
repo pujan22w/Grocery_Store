@@ -14,6 +14,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
     price: "",
     weight: "",
     isavailable: true,
+    stock: "",
   });
 
   const [error, setError] = useState("");
@@ -57,6 +58,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
     // Check for duplicate product
     if (isDuplicateProduct(trimmedName)) {
       setError("A product with this name already exists.");
+      alert("Product already inserted");
       return;
     }
     const formData = new FormData();
@@ -66,7 +68,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
     formData.append("price", product.price);
     formData.append("weight", product.weight);
     formData.append("isavailable", product.isavailable);
-    console.log(product);
+
     formData.append("stock", product.stock);
     try {
       const response = await axios.post(
@@ -162,7 +164,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
 
         {/* Weight */}
         <div className="form-group">
-          <label>Weight (kg):</label>
+          <label>Weight (kg/ltr):</label>
           <input
             type="number"
             name="weight"
@@ -173,8 +175,20 @@ const AddProduct = ({ categories, addProduct, products }) => {
             placeholder="Enter weight"
           />
         </div>
-
         {/* In Stock */}
+        <div className="form-group">
+          <label>Stock:</label>
+          <input
+            type="number"
+            name="stock"
+            value={product.stock}
+            onChange={handleChange}
+            min="0"
+            required
+            placeholder="Enter Stock"
+          />
+        </div>
+
         <div className="form-group checkbox-group">
           <input
             type="checkbox"
@@ -207,10 +221,5 @@ const AddProduct = ({ categories, addProduct, products }) => {
   );
 };
 
-// AddProduct.propTypes = {
-//   categories: PropTypes.array.isRequired,
-//   addProduct: PropTypes.func.isRequired,
-//   products: PropTypes.array.isRequired,
-// };
 
 export default AddProduct;

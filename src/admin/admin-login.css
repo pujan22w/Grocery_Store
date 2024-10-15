@@ -30,8 +30,10 @@ form {
 }
 .admin-login-button {
   width: 50%;
+  height: 35px;
   margin-left: 70px;
   background-color: green;
+  color: #fff;
 }
 
 .admin-login-button:hover {

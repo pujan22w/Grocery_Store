@@ -23,7 +23,8 @@ export const UserAuthProvider = ({ children }) => {
       );
 
       if (response.data) {
-        setUser(response.data.email);
+        const dataname= response.data.data.user.fullname;;
+        setUser(dataname);
         setIsAuthenticated(true);
         return { success: true };
       } else {
@@ -62,7 +63,7 @@ export const UserAuthProvider = ({ children }) => {
         const response = await axios.get(
           "http://localhost:8000/api/v1/users/me"
         );
-        console.log(response.data.data.fullname);
+
         setUser(response.data.data.fullname);
         setIsAuthenticated(true);
       } catch (error) {

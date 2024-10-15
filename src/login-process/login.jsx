@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
-import {UserAuthContext} from "./loginauth.jsx";
+import { UserAuthContext } from "./loginauth.jsx";
 import { useNavigate } from "react-router-dom";
-
-import axios from "../lib/axios";
 import "./login.css";
 function Login() {
   const { login } = useContext(UserAuthContext);
@@ -28,33 +26,6 @@ function Login() {
     }
   };
 
-  // try {
-  //   // Sending login credentials to the backend API
-  //   const response = await axios.post(
-  //     "http://localhost:8000/api/v1/users/login",
-  //     {
-  //       email,
-  //       password,
-  //     }
-  //   );
-  //   if (response.data) {
-  //     // login();
-  //     setSuccess("Login successful. Welcome Admin!");
-  //     alert("Login Successful");
-  //     navigate("/");
-  //   } else {
-  //     setError("Please Enter Correct email and password");
-  //   }
-  // } catch (error) {
-  //   if (error.response) {
-  //     setError(`Error 404 Found || "Login failed."`);
-  //     alert("Plaese enter correctly");
-  //   } else if (error.request) {
-  //     setError("No response from server. Please try again later.");
-  //   } else {
-  //     setError(`Error: ${error}`);
-  //   }
-  // }
   return (
     <>
       <div className="container">
@@ -84,7 +55,6 @@ function Login() {
                 type="email"
                 placeholder="Email"
                 name="email"
-                autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -92,7 +62,6 @@ function Login() {
                 type="password"
                 placeholder="Password"
                 name="password"
-                autoComplete="off"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />

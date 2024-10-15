@@ -34,7 +34,7 @@ function Home() {
             </a>
           </div>
           <div className="about-image">
-            <img src="5.jpg" alt="About us Image" />
+            <img src="./5.jpg" alt="About us image" />
           </div>
         </div>
       </section>

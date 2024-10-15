@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import "./index.css";
-// import "./contact.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App.js";
 import { AuthProvider } from "./admin/admin-auth.jsx";
-import {UserAuthProvider} from "./login-process/loginauth.jsx";
-
+import { UserAuthProvider } from "./login-process/loginauth.jsx";
+import { CartProvider } from "./addtocart/CartContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <UserAuthProvider>
       <AuthProvider>
-        <App />
+        <CartProvider>
+          <App />
+        </CartProvider>
       </AuthProvider>
     </UserAuthProvider>
   </>
