@@ -1,6 +1,7 @@
 import React from "react";
 import "./contact.css";
 import { NavBar } from "./navbar.jsx";
+import { Footer } from "./footer.js";
 function ContactUs() {
   return (
     <>
@@ -44,9 +45,7 @@ function ContactUs() {
         </div>
       </section>
 
-      <footer className="footer">
-        <p>&copy; 2024 GroceryStore. All rights reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

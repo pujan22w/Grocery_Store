@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { CartContext } from "./CartContext.js";
 import "./AddToCart.css"; // Create this CSS file for styling
 import { NavBar } from "../navbar.jsx";
-
+import { Link } from "react-router-dom";
 const AddToCart = () => {
   const { cartItems, increment, decrement, removeFromCart, totalPrice } =
     useContext(CartContext);
@@ -53,7 +53,7 @@ const AddToCart = () => {
               <h3>Total Price: Rs.{totalPrice}</h3>
             </div>
             <div className="checkout-button">
-              <a href=""> Checkout </a>
+              <Link to="/checkout">Proceed to Checkout </Link>
             </div>
           </>
         )}

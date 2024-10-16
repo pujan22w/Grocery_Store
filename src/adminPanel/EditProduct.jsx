@@ -146,7 +146,6 @@ const EditProduct = ({ products, categories, updateProduct }) => {
             name="price"
             value={product.price}
             onChange={handleChange}
-            min="0"
             required
           />
         </div>
@@ -159,7 +158,6 @@ const EditProduct = ({ products, categories, updateProduct }) => {
             name="weight"
             value={product.weight}
             onChange={handleChange}
-            min="0"
             required
           />
         </div>

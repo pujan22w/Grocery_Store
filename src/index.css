@@ -23,19 +23,6 @@ body {
   min-height: 100vh;
 }
 
-.logo-link {
-  text-decoration: none; /* underline hataidinchha */
-}
-
-.logo-link .logo {
-  color: white; /* logo ko color anusaar change garni */
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.logo-link:hover .logo {
-  color: #ff6347; /* color change hanchha */
-}
 
 /* Header Section */
 .header-section {
@@ -79,11 +66,6 @@ nav {
   height: 120px;
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-}
-
 nav ul li {
   margin: 0 15px;
 }
@@ -94,7 +76,7 @@ nav ul li a {
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
-}
+} */
 
 .header-content h2 {
   font-size: 48px;
@@ -133,7 +115,7 @@ nav ul li a {
 /* About Section */
 .about-section {
   padding: 100px 50px;
-  background-image: url(5.jpg);
+  background-image: url(5.jpeg);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;

@@ -1,6 +1,7 @@
 import React from "react";
 import "./about.css";
 import { NavBar } from "./navbar.jsx";
+import { Footer } from "./footer.js";
 function About() {
   return (
     <>
@@ -78,9 +79,7 @@ function About() {
         </div>
       </section>
 
-      <footer className="footer">
-        <p>© 2024 Puzu Grocery Store. All rights reserved.</p>
-      </footer>
+      <Footer />
     </>
   );
 }

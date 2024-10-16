@@ -9,7 +9,7 @@ import FetchDairy from "./fetchApi/fetchDairy.jsx";
 import FetchSnacks from "./fetchApi/fetchSnacks.jsx";
 import FetchJuice from "./fetchApi/fetchJuice.jsx";
 import { CartContext } from "./addtocart/CartContext.js"; // Import the CartContext
-
+import { Footer } from "./footer.js";
 import { UserAuthContext } from "./login-process/loginauth.jsx"; // Import UserAuthContext
 import { toast, ToastContainer } from "react-toastify"; // For notifications
 import "react-toastify/dist/ReactToastify.css"; // Import react-toastify styles
@@ -212,9 +212,7 @@ function Product() {
       </section>
 
       {/* <!-- Footer Section --> */}
-      <footer className="footer">
-        <p>&copy; 2024 Puzu Grocery Store. All rights reserved.</p>
-      </footer>
+      <Footer />
 
       {/* <!-- Fetch Components (Hidden) --> */}
       {/* These components fetch data and pass it up to the parent via handleFetch */}

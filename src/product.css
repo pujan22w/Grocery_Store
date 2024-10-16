@@ -178,8 +178,10 @@
   position: fixed;
   top: 80px; /* Adjust based on your header height */
   right: 20px;
-  background-color: #28a745;
-  color: white;
+  background-color: #9cab9f;
+  color: black;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   padding: 15px 20px;
   border-radius: 5px;
   z-index: 1000;

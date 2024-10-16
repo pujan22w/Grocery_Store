@@ -34,7 +34,7 @@ function Home() {
             </a>
           </div>
           <div className="about-image">
-            <img src="./5.jpg" alt="About us image" />
+            <img src="./3.jpeg" alt="About us image" />
           </div>
         </div>
       </section>
@@ -73,10 +73,7 @@ function Home() {
             <i className="fa-brands fa-instagram"></i>
           </a>
           <a href="#">
-            <i className="fa-brands fa-linkedin"></i>
-          </a>
-          <a href="#">
-            <i className="fa-brands fa-telegram"></i>
+            <i className="fa-brands fa-tiktok"></i>
           </a>
         </div>
       </section>

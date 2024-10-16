@@ -156,7 +156,6 @@ const AddProduct = ({ categories, addProduct, products }) => {
             name="price"
             value={product.price}
             onChange={handleChange}
-            min="0"
             required
             placeholder="Enter price"
           />
@@ -170,7 +169,6 @@ const AddProduct = ({ categories, addProduct, products }) => {
             name="weight"
             value={product.weight}
             onChange={handleChange}
-            min="0"
             required
             placeholder="Enter weight"
           />
@@ -220,6 +218,5 @@ const AddProduct = ({ categories, addProduct, products }) => {
     </div>
   );
 };
-
 
 export default AddProduct;
