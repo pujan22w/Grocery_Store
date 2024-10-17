@@ -18,31 +18,30 @@ const Sidebar = () => {
       <nav className="sidebar-nav">
         <NavLink
           to="/admin/dashboard"
-          // activeClassName="active-link"
           className="sidebar-link"
         >
           Dashboard
         </NavLink>
         <NavLink
           to="/admin/categories"
-          // activeClassName="active-link"
           className="sidebar-link"
         >
           Categories
         </NavLink>
         <NavLink
           to="/admin/add-product"
-          // activeClassName="active-link"
           className="sidebar-link"
         >
           Add Product
         </NavLink>
         <NavLink
           to="/admin/all-products"
-          // activeClassName="active-link"
           className="sidebar-link"
         >
           All Products
+        </NavLink>
+        <NavLink to="/admin/all-order" className="sidebar-link">
+          All Order
         </NavLink>
         <AdminLogout />
       </nav>

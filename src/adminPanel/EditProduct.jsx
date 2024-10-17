@@ -28,7 +28,7 @@ const EditProduct = ({ products, categories, updateProduct }) => {
     price: "",
     weight: "",
     isavailable: true,
-    stock: 50,
+    stock: "",
   });
   console.log(product);
   useEffect(() => {
@@ -41,6 +41,7 @@ const EditProduct = ({ products, categories, updateProduct }) => {
         price: ProductData.price,
         weight: ProductData.weight,
         isavailable: ProductData.isavailable,
+        stock: ProductData.stock,
       }));
     }
   }, [ProductData]);
@@ -69,7 +70,7 @@ const EditProduct = ({ products, categories, updateProduct }) => {
           price: product.price,
           weight: product.weight,
           isavailable: product.isavailable,
-          stock: 50,
+          stock: product.stock,
         }
       );
       const updatedProduct = response.data.data;
@@ -152,16 +153,27 @@ const EditProduct = ({ products, categories, updateProduct }) => {
 
         {/* Weight */}
         <div className="form-group">
-          <label>Weight (kg):</label>
+          <label>Weight:</label>
           <input
-            type="number"
+            type="text"
             name="weight"
             value={product.weight}
             onChange={handleChange}
             required
           />
         </div>
-
+        <div className="form-group">
+          <label>Stock:</label>
+          <input
+            type="number"
+            name="stock"
+            value={product.stock}
+            onChange={handleChange}
+            min="0"
+            required
+            placeholder="Enter Stock"
+          />
+        </div>
         {/* In Stock */}
         <div className="form-group checkbox-group">
           <input
@@ -169,9 +181,9 @@ const EditProduct = ({ products, categories, updateProduct }) => {
             name="isavailable"
             checked={product.isavailable}
             onChange={handleChange}
-            id="inStockCheckEdit"
+            id="isAvailable"
           />
-          <label htmlFor="inStockCheckEdit">In Stock</label>
+          <label htmlFor="inStockCheckEdit">Is Available</label>
         </div>
 
         {/* Buttons */}

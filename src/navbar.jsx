@@ -68,7 +68,7 @@ function NavBar() {
             </li>
             <li>
               <Link to="/contact" onClick={closeMenus}>
-                CONTACT
+                CONTACT US
               </Link>
             </li>
           </ul>

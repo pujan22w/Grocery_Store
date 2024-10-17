@@ -7,9 +7,6 @@ const AllOrders = ({ orders, deleteOrder, updateOrderStatus }) => {
   return (
     <div className="all-orders-container">
       <h2>All Orders</h2>
-      <NavLink to="/add-order" className="add-order-btn">
-        Add New Order
-      </NavLink>
       <table className="orders-table">
         <thead>
           <tr>

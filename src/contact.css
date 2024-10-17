@@ -21,37 +21,6 @@ body {
   color: white;
   text-align: center;
 }
-
-.header-section nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-section nav h1 {
-  font-size: 24px;
-  color: #ff6347;
-}
-
-.header-section nav ul {
-  display: flex;
-  list-style: none;
-}
-
-.header-section nav ul li {
-  margin: 0 15px;
-}
-
-.header-section nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.header-section nav ul li a:hover {
-  color: #ff6347;
-}
-
 /* Contact Section */
 .contact-section {
   padding: 100px 20px;

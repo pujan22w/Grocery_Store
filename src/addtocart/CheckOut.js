@@ -112,7 +112,7 @@ function CheckOut() {
                       className="checkout-product-image"
                     />
                   </td>
-                  <td>{item.productname}</td>
+                  <td className="product-name">{item.productname}</td>
                   <td>{item.price.toFixed(2)}</td>
                   <td>{item.quantity}</td>
                   <td>{(item.price * item.quantity).toFixed(2)}</td>

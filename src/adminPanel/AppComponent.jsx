@@ -87,6 +87,9 @@ function AppAdminComponent() {
     );
     setProducts(newProducts);
   };
+  const AllOrder = () =>{
+    
+  }
   return (
     <div className="app-container">
       <Sidebar />
@@ -118,6 +121,16 @@ function AppAdminComponent() {
             path="/edit-product/:id"
             element={
               <EditProduct
+                products={products}
+                categories={categories}
+                updateProduct={updateProduct}
+              />
+            }
+          />
+          <Route
+            path="/all-order/:id"
+            element={
+              <AllOrders
                 products={products}
                 categories={categories}
                 updateProduct={updateProduct}

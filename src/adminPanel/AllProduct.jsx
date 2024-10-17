@@ -90,7 +90,7 @@ const AllProducts = ({ products, deleteProduct }) => {
             <th>Name</th>
             <th>Category</th>
             <th>Price</th>
-            <th>Weight(Kg/Ltr)</th>
+            <th>Weight</th>
             <th>Is Available</th>
             <th>Stock</th>
             <th>Actions</th>

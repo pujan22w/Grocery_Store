@@ -104,16 +104,16 @@ function Product() {
   const handleCategorySelect = (category) => {
     console.log("Category selected:", category);
     setSelectedCategory(category);
-    setVisibleCount(24); // Reset visible count on category change
-    setSearchTerm(""); // Optional: Reset search term on category change
+    setVisibleCount(24);
+    setSearchTerm("");
   };
   // Handle Add to Cart
   const handleAddToCartClick = (product) => {
     if (isAuthenticated) {
-      addToCart(product); // Add product to cart via context
-      toast.success(`${product.productname} added to cart!`); // Show success notification
+      addToCart(product);
+      toast.success(`${product.productname} added to cart!`);
     } else {
-      toast.error("Please log in to add items to the cart."); // Show error notification
+      toast.error("Please log in to add items to the cart.");
       navigate("/login");
     }
   };
@@ -180,7 +180,8 @@ function Product() {
                     loading="lazy"
                   />
                   <h4>{product.productname}</h4>
-                  <p>Rs.{product.price}</p>
+                  <p>Price: Rs.{product.price}</p>
+                  <p>Weight: {product.weight}</p>
                   <button
                     className="addtocart"
                     onClick={() => handleAddToCartClick(product)}

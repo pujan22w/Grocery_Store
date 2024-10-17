@@ -70,6 +70,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
     formData.append("isavailable", product.isavailable);
 
     formData.append("stock", product.stock);
+
     try {
       const response = await axios.post(
         "http://localhost:8000/api/v1/product/register",
@@ -163,9 +164,9 @@ const AddProduct = ({ categories, addProduct, products }) => {
 
         {/* Weight */}
         <div className="form-group">
-          <label>Weight (kg/ltr):</label>
+          <label>Weight:</label>
           <input
-            type="number"
+            type="text"
             name="weight"
             value={product.weight}
             onChange={handleChange}
@@ -181,7 +182,6 @@ const AddProduct = ({ categories, addProduct, products }) => {
             name="stock"
             value={product.stock}
             onChange={handleChange}
-            min="0"
             required
             placeholder="Enter Stock"
           />

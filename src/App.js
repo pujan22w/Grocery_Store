@@ -17,6 +17,7 @@ import AddToCart from "./addtocart/AddtoCart.js";
 import CheckOut from "./addtocart/CheckOut.js";
 import OrderConfirmation from "./addtocart/OrderConfirmation.js";
 import MyOrder from "./profile/MyOrder.js";
+import MyProfile from "./profile/MyProfile.js";
 function App() {
   const { isAuth } = useContext(AuthContext);
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/checkout" element={<CheckOut />} />
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/order" element={<MyOrder />} />
+          <Route path="/profile" element={<MyProfile />} />
         </Routes>
       </BrowserRouter>
     </>

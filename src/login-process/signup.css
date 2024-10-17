@@ -72,7 +72,9 @@
   box-sizing: border-box;
   transition: border-color 0.3s;
 }
-
+.form-group #email {
+  text-transform: lowercase;
+}
 .form-input:focus {
   border-color: #28a745; /* Highlight border on focus */
   outline: none;

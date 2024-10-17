@@ -59,12 +59,13 @@ body {
 }
 
 .nav-links li a {
-  color: white;
+  color: white !important;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
 }
 
 .nav-links li a:hover {
@@ -111,13 +112,10 @@ body {
   border-radius: 4px;
   min-width: 160px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  /* animation: fadeIn 0.3s ease; */
+  animation: fadeIn 0.3s ease;
   z-index: 10000;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-}
-.user-dropdown:hover {
-  background-color: black;
 }
 
 @keyframes fadeIn {
@@ -145,14 +143,13 @@ body {
   border: none;
   text-align: left;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 20px;
   cursor: pointer;
 }
 
 .user-dropdown li a:hover,
 .user-dropdown li button:hover {
-  background-color: #3a3838;
-  /* z-index: 1000; */
+  transform: translateX(5px);
 }
 .user-dropdown .logout-button {
   font-size: 14px;
