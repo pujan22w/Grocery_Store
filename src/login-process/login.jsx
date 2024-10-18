@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { UserAuthContext } from "./loginauth.jsx";
+import { AuthContext } from "./loginauth.jsx";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 function Login() {
-  const { login } = useContext(UserAuthContext);
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,9 +17,8 @@ function Login() {
     const result = await login(email, password);
     if (result.success) {
       setSuccess("Login successful. Welcome!");
-      // Optionally, use a more user-friendly notification system
       alert("Login Successful");
-      navigate("/"); // Redirect to home or desired page
+      navigate("/");
     } else {
       setError(result.message);
       alert(result.message);

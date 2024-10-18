@@ -10,22 +10,20 @@ function FetchDairy({ onFetch }) {
     }
     return shuffled;
   };
-  const fetchData = async () => {
-    try {
-      const reponse = await axios.get(
-        "http://localhost:8000/api/v1/product/filter?category=Dairy"
-      );
-      console.log(reponse.data.data.products);
-      // const data = await reponse.json();
-      let products = reponse?.data?.data.products || [];
-      const shuffledProducts = shuffleArray(products);
-      setData(shuffledProducts);
-      onFetch(shuffledProducts);
-    } catch (error) {
-      console.error("Error fetching fruits:", error);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const reponse = await axios.get(
+          "http://localhost:8000/api/v1/product/filter?category=Dairy"
+        );
+        let products = reponse?.data?.data.products || [];
+        const shuffledProducts = shuffleArray(products);
+        setData(shuffledProducts);
+        onFetch(shuffledProducts);
+      } catch (error) {
+        console.error("Error fetching fruits:", error);
+      }
+    };
     fetchData();
   }, []);
   return null;

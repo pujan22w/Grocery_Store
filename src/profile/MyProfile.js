@@ -38,7 +38,7 @@ function MyProfile() {
             <input
               type="text"
               id="fullname"
-              value={UserData.fullname}
+              value={UserData.fullName}
               readOnly
             />
           </div>

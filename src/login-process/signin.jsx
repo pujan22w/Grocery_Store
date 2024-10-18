@@ -8,7 +8,7 @@ const SignUpForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     otp: "",
-    fullname: "",
+    fullName: "",
     phonenumber: "",
     password: "",
     dob: "",
@@ -79,7 +79,7 @@ const SignUpForm = () => {
       const signUpResponse = await axios.post(
         "http://localhost:8000/api/v1/users/register",
         {
-          fullname: formData.fullname,
+          fullName: formData.fullName,
           email: formData.email,
           otp: formData.otp,
           address: formData.address,
@@ -97,7 +97,7 @@ const SignUpForm = () => {
         setFormData({
           email: "",
           otp: "",
-          fullname: "",
+          fullName: "",
           phonenumber: "",
           password: "",
           dateOfBirth: "",
@@ -189,7 +189,7 @@ const SignUpForm = () => {
                 id="fullname"
                 name="fullname"
                 placeholder="Enter your full name"
-                value={formData.fullname}
+                value={formData.fullName}
                 onChange={handleChange}
                 required={isOtpSent}
                 className="form-input"

@@ -1,16 +1,16 @@
 // src/admin/AdminPanel.jsx
 import React, { useContext } from "react";
-import { AuthContext } from "./admin-auth.jsx";
+import { AdminAuthContext } from "./admin-auth.jsx";
 import { useNavigate } from "react-router-dom";
 // import AdminPaanel from "./admin-panel/admin-panel.jsx";
 import AppAdminComponent from "../adminPanel/AppComponent.jsx";
 // import "./admin-panel/panel-style.css";
 function AdminLogout() {
-  const { logout } = useContext(AuthContext);
+  const { adminlogout } = useContext(AdminAuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(); // Update auth state
+    adminlogout(); // Update auth state
     alert("Logout sucessful");
     navigate("/admin"); // Redirect to login page
   };

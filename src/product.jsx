@@ -10,7 +10,7 @@ import FetchSnacks from "./fetchApi/fetchSnacks.jsx";
 import FetchJuice from "./fetchApi/fetchJuice.jsx";
 import { CartContext } from "./addtocart/CartContext.js"; // Import the CartContext
 import { Footer } from "./footer.js";
-import { UserAuthContext } from "./login-process/loginauth.jsx"; // Import UserAuthContext
+import { AuthContext } from "./login-process/loginauth.jsx"; // Import AuthContext
 import { toast, ToastContainer } from "react-toastify"; // For notifications
 import "react-toastify/dist/ReactToastify.css"; // Import react-toastify styles
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ function Product() {
   const [notification, setNotification] = useState(""); // Notification state
 
   const { addToCart } = useContext(CartContext); // Access addToCart from CartContext
-  const { isAuthenticated } = useContext(UserAuthContext); // Access authentication status
+  const { isAuth } = useContext(AuthContext); // Access authentication status
 
   // Fisher-Yates Shuffle Algorithm
   const shuffleArray = (array) => {
@@ -42,12 +42,10 @@ function Product() {
   const handleFetch = (products) => {
     setAllProducts((prevProducts) => {
       const combined = [...prevProducts, ...products];
-      // Remove duplicates based on unique identifier (_id)
       const unique = Array.from(new Set(combined.map((p) => p._id))).map((id) =>
         combined.find((p) => p._id === id)
       );
-      const shuffled = shuffleArray(unique);
-      return shuffled;
+      return shuffleArray(unique);
     });
   };
   const categories = [
@@ -69,6 +67,7 @@ function Product() {
     }
     return filtered;
   };
+
   // Effect to set displayed products when allProducts updates
   useEffect(() => {
     if (allProducts.length > 0) {
@@ -102,16 +101,18 @@ function Product() {
   };
 
   const handleCategorySelect = (category) => {
-    console.log("Category selected:", category);
     setSelectedCategory(category);
     setVisibleCount(24);
     setSearchTerm("");
   };
   // Handle Add to Cart
   const handleAddToCartClick = (product) => {
-    if (isAuthenticated) {
+    if (isAuth) {
       addToCart(product);
-      toast.success(`${product.productname} added to cart!`);
+      toast.success(`${product.productname} added to cart!`, {
+        position: "top-right",
+        className: "notification",
+      });
     } else {
       toast.error("Please log in to add items to the cart.");
       navigate("/login");
@@ -127,6 +128,7 @@ function Product() {
           <p>Fresh groceries delivered to your door</p>
         </div>
       </header>
+      <ToastContainer />
       {notification && (
         <div className="notification">
           <p>{notification}</p>
@@ -185,7 +187,7 @@ function Product() {
                   <button
                     className="addtocart"
                     onClick={() => handleAddToCartClick(product)}
-                    disabled={!isAuthenticated}
+                    disabled={!isAuth}
                   >
                     Add to Cart
                   </button>

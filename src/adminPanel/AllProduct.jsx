@@ -60,8 +60,6 @@ const AllProducts = ({ products, deleteProduct }) => {
   useEffect(() => {
     setFilteredProducts(products);
   }, [products]);
-
-  console.log(filteredProducts);
   return (
     <div className="all-products-container">
       <h2>All Products</h2>

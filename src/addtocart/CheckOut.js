@@ -1,17 +1,17 @@
 // src/checkout/Checkout.jsx
 import React, { useContext, useState } from "react";
 import { CartContext } from "../addtocart/CartContext";
-import { UserAuthContext } from "../login-process/loginauth.jsx";
+import { AuthContext } from "../login-process/loginauth.jsx";
 import "./CheckOut.css"; // Create this CSS file for styling
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "../lib/axios"; // Import Axios
 
 function CheckOut() {
   const { cartItems, totalPrice, removeFromCart, clearCart } =
     useContext(CartContext);
-  const { isAuthenticated } = useContext(UserAuthContext);
+  const { isAuth } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [paymentMethod, setPaymentMethod] = useState("COD");
@@ -25,7 +25,7 @@ function CheckOut() {
       })
     );
     e.preventDefault();
-    if (!isAuthenticated) {
+    if (!isAuth) {
       toast.error("Please log in to proceed to checkout.");
       navigate("/login");
       return;
@@ -54,9 +54,6 @@ function CheckOut() {
 
         if (response.status === 201 || response.status === 200) {
           toast.success("Order placed successfully!");
-          alert(
-            "Great Your order is Placed, You can check My Order Section for more"
-          );
           clearCart();
           navigate("/order-confirmation"); // Redirect to home or order confirmation page
         } else {
@@ -75,7 +72,7 @@ function CheckOut() {
     }
   };
 
-  if (!isAuthenticated) {
+  if (!isAuth) {
     toast.error("Please log in to proceed to checkout.");
     navigate("/login");
     return null;
@@ -84,6 +81,7 @@ function CheckOut() {
   return (
     <div className="checkout-container">
       <h2>Checkout</h2>
+
       {cartItems.length === 0 ? (
         <p>
           Your cart is empty. Please add products to your cart before proceeding
@@ -167,6 +165,7 @@ function CheckOut() {
                 />
               </label>
             </div>
+            <ToastContainer />
             <button type="submit" className="checkout-button-proceed">
               Proceed to Payment
             </button>

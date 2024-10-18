@@ -1,28 +1,28 @@
-// src/components/EditOrder.js
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./EditOrder.css";
 
 const EditOrder = ({ orders, updateOrderStatus }) => {
-  const { id } = useParams(); // Order ID
+  const { id } = useParams(); // Order ID from URL
   const navigate = useNavigate();
-  const order = orders.find((order) => order.id === id);
-
-  const [deliveryStatus, setDeliveryStatus] = useState(
-    order ? order.deliveryStatus : "Pending"
-  );
-
+  const order = orders.find((order) => order._id === id); // Find the order by ID
+  const [deliveryStatus, setDeliveryStatus] = useState("Pending");
+  useEffect(() => {
+    if (order) {
+      setDeliveryStatus(order.status); // Update delivery status when the order is found
+    }
+  }, [order]);
   useEffect(() => {
     if (!order) {
       alert("Order not found!");
-      navigate("/orders");
+      navigate("/admin/all-order");
     }
   }, [order, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateOrderStatus(id, deliveryStatus);
-    navigate("/orders");
+    updateOrderStatus(order._id, deliveryStatus); // Pass the order ID and new status
+    navigate("/admin/all-order"); // Navigate back to all orders after update
   };
 
   if (!order) {
@@ -36,19 +36,19 @@ const EditOrder = ({ orders, updateOrderStatus }) => {
         {/* Order ID */}
         <div className="form-group">
           <label>Order ID:</label>
-          <input type="text" value={order.id} disabled />
+          <input type="text" value={order._id} disabled />
         </div>
 
         {/* Customer Name */}
         <div className="form-group">
           <label>Customer Name:</label>
-          <input type="text" value={order.customerName} disabled />
+          <input type="text" value={order.user} disabled />
         </div>
 
         {/* Current Delivery Status */}
         <div className="form-group">
           <label>Current Delivery Status:</label>
-          <input type="text" value={order.deliveryStatus} disabled />
+          <input type="text" value={order.status} disabled />
         </div>
 
         {/* Update Delivery Status */}
@@ -74,7 +74,7 @@ const EditOrder = ({ orders, updateOrderStatus }) => {
           <button
             type="button"
             className="cancel-btn"
-            onClick={() => navigate("/orders")}
+            onClick={() => navigate("/admin/all-order")}
           >
             Cancel
           </button>

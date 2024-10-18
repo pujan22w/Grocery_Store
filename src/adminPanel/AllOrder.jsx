@@ -3,7 +3,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./AllOrder.css";
 
-const AllOrders = ({ orders, deleteOrder, updateOrderStatus }) => {
+const AllOrders = ({ orders, updateOrderStatus }) => {
+  console.log(orders);
   return (
     <div className="all-orders-container">
       <h2>All Orders</h2>
@@ -14,6 +15,7 @@ const AllOrders = ({ orders, deleteOrder, updateOrderStatus }) => {
             <th>Customer</th>
             <th>Email</th>
             <th>Total Amount (Rs)</th>
+            <th>Shipping Address</th>
             <th>Order Date</th>
             <th>Delivery Status</th>
             <th>Actions</th>
@@ -28,23 +30,21 @@ const AllOrders = ({ orders, deleteOrder, updateOrderStatus }) => {
             </tr>
           )}
           {orders.map((order) => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.customerName}</td>
-              <td>{order.customerEmail}</td>
-              <td>{order.totalAmount.toFixed(2)}</td>
-              <td>{new Date(order.orderDate).toLocaleString()}</td>
-              <td>{order.deliveryStatus}</td>
+            <tr key={order._id}>
+              <td>{order._id}</td>
+              <td>{order.user}</td>
+              <td>{order.email}</td>
+              <td>{order.totalPrice}</td>
+              <td>{order.shippingAddress}</td>
+              <td>{new Date(order.createdAt).toLocaleString()}</td>
+              <td>{order.status}</td>
               <td>
-                <NavLink to={`/edit-order/${order.id}`} className="edit-btn">
+                <NavLink
+                  to={`/admin/edit-order/${order._id}`}
+                  className="edit-btn"
+                >
                   Edit
                 </NavLink>
-                <button
-                  className="delete-btn"
-                  onClick={() => deleteOrder(order.id)}
-                >
-                  Cancel
-                </button>
               </td>
             </tr>
           ))}

@@ -1,28 +1,27 @@
 // src/context/AuthContext.jsx
 import React, { createContext, useState } from "react";
 
-export const AuthContext = createContext();
+export const AdminAuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AdminAuthProvider = ({ children }) => {
   // Initialize isAuth from localStorage to persist login on refresh
-  const [isAuth, setIsAuth] = useState(() => {
-    const savedAuth = localStorage.getItem("isAuth");
-    return savedAuth ? JSON.parse(savedAuth) : false;
+  const [isAdminAuth, setIsAdminAuth] = useState(() => {
+    const savedAdminAuth = localStorage.getItem("isAdminAuth");
+    return savedAdminAuth ? JSON.parse(savedAdminAuth) : false;
   });
 
-  const login = () => {
-    setIsAuth(true);
-    localStorage.setItem("isAuth", true);
+  const adminlogin = () => {
+    setIsAdminAuth(true);
+    console.log("admin true");
   };
 
-  const logout = () => {
-    setIsAuth(false);
-    localStorage.removeItem("isAuth");
+  const adminlogout = () => {
+    setIsAdminAuth(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuth, login, logout }}>
+    <AdminAuthContext.Provider value={{ isAdminAuth, adminlogin, adminlogout }}>
       {children}
-    </AuthContext.Provider>
+    </AdminAuthContext.Provider>
   );
 };

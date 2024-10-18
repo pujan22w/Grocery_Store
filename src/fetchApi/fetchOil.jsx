@@ -15,8 +15,6 @@ function FetchOil({ onFetch }) {
       const reponse = await axios.get(
         "http://localhost:8000/api/v1/product/filter?category=Oil"
       );
-      console.log(reponse.data.data.products);
-      // const data = await reponse.json();
       let products = reponse?.data?.data.products || [];
       const shuffledProducts = shuffleArray(products);
       setData(shuffledProducts);

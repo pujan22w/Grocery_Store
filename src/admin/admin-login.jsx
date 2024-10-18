@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AuthContext } from "./admin-auth.jsx";
+import { AdminAuthContext } from "./admin-auth.jsx";
 import { useNavigate } from "react-router-dom";
 import "./admin-login.css";
 import axios from "../lib/axios";
@@ -9,7 +9,7 @@ function AdminLog() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { login } = useContext(AuthContext);
+  const { adminlogin } = useContext(AdminAuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -26,12 +26,16 @@ function AdminLog() {
           password,
         }
       );
-      if (response.data) {
-        login();
+      console.log(response.data.data.user.role == "admin");
+      if (response.data.data.user.role === "admin") {
+        adminlogin();
+        console.log("Navigating to admin panel...");
         setSuccess("Login successful. Welcome Admin!");
+
         navigate("/admin/panel");
       } else {
-        setError("Invalid credentials or you are not an admin.");
+        setError("You are not an admin.");
+        alert("You are not a admin");
       }
     } catch (error) {
       if (error.response) {

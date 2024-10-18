@@ -3,12 +3,13 @@ import React, { createContext, useState, useEffect } from "react";
 import axios from "../lib/axios"; // Custom Axios instance
 
 // Create the AuthContext
-export const UserAuthContext = createContext();
+export const AuthContext = createContext();
 
 // Create the AuthProvider component
-export const UserAuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // User information
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // User authentication status
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(); // User information
+  const [isAuth, setIsAuth] = useState(false);
+
   const [loading, setLoading] = useState(true); // Loading state
 
   // Function to handle user login
@@ -22,10 +23,8 @@ export const UserAuthProvider = ({ children }) => {
         }
       );
 
-      if (response.data) {
-        const dataname= response.data.data.user.fullname;;
-        setUser(dataname);
-        setIsAuthenticated(true);
+      if (response.data.data.user.role === "user") {
+        setIsAuth(true);
         return { success: true };
       } else {
         return { success: false, message: "Invalid email or password." };
@@ -50,7 +49,7 @@ export const UserAuthProvider = ({ children }) => {
     try {
       await axios.post("http://localhost:8000/api/v1/users/logout");
       setUser(null);
-      setIsAuthenticated(false);
+      setIsAuth(false);
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -63,26 +62,22 @@ export const UserAuthProvider = ({ children }) => {
         const response = await axios.get(
           "http://localhost:8000/api/v1/users/me"
         );
-
-        setUser(response.data.data.fullname);
-        setIsAuthenticated(true);
+        setUser(response.data.data.fullName);
+        setIsAuth(true);
       } catch (error) {
         setUser(null);
-        setIsAuthenticated(false);
+        setIsAuth(false);
       } finally {
         setLoading(false);
       }
     };
 
     fetchUser();
-  }, []);
-
+  }, [login]);
   return (
-    <UserAuthContext.Provider
-      value={{ user, isAuthenticated, login, logout, loading }}
-    >
+    <AuthContext.Provider value={{ user, isAuth, login, logout, loading }}>
       {children}
-    </UserAuthContext.Provider>
+    </AuthContext.Provider>
   );
 };
 // export default UserAuthProvider;

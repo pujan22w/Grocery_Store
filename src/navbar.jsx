@@ -1,12 +1,12 @@
 // NavBar.jsx
 import React, { useContext, useState } from "react";
-import { UserAuthContext } from "./login-process/loginauth.jsx";
+import { AuthContext } from "./login-process/loginauth.jsx";
 import { Link } from "react-router-dom";
 import { CartContext } from "./addtocart/CartContext";
 import "./navbar.css";
 
 function NavBar() {
-  const { isAuthenticated, user, logout } = useContext(UserAuthContext);
+  const { isAuth, user, logout } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
 
   // Calculate total items in the cart
@@ -76,12 +76,12 @@ function NavBar() {
 
         {/* Right Section: User Auth and Cart */}
         <div className="navbar-right">
-          {isAuthenticated ? (
+          {isAuth ? (
             <div className="after-login">
               {/* User Info */}
               <div className="user-info">
                 <button className="user-button" onClick={toggleUserMenu}>
-                  <span>Hi, {user}</span>
+                  <span>Hi, {user ? user : "Guest"}</span>
                   <i className="fas fa-chevron-down arrow"></i>
                 </button>
                 {userMenuOpen && (

@@ -10,7 +10,7 @@ import { ForgotPassword } from "./login-process/forgotpassword.jsx";
 import { ItemsProducts } from "./items-description.jsx";
 import AdminLog from "./admin/admin-login.jsx";
 import ProtectedRoute from "./admin/panel-protect.jsx";
-import { AuthContext } from "./admin/admin-auth.jsx";
+import { AdminAuthContext } from "./admin/admin-auth.jsx";
 // FOr admin Panel
 import AppAdminComponent from "./adminPanel/AppComponent.jsx";
 import AddToCart from "./addtocart/AddtoCart.js";
@@ -19,7 +19,7 @@ import OrderConfirmation from "./addtocart/OrderConfirmation.js";
 import MyOrder from "./profile/MyOrder.js";
 import MyProfile from "./profile/MyProfile.js";
 function App() {
-  const { isAuth } = useContext(AuthContext);
+  const { isAdminAuth } = useContext(AdminAuthContext);
   return (
     <>
       <BrowserRouter>
@@ -38,7 +38,7 @@ function App() {
           <Route
             path="/admin/*"
             element={
-              <ProtectedRoute isAuth={isAuth}>
+              <ProtectedRoute isAdminAuth={isAdminAuth}>
                 <AppAdminComponent />
               </ProtectedRoute>
             }
