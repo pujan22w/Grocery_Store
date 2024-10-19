@@ -1,32 +1,50 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "./loginauth.jsx";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./login.css";
 function Login() {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
+    // setSuccess("");
     const result = await login(email, password);
     if (result.success) {
-      setSuccess("Login successful. Welcome!");
-      alert("Login Successful");
-      navigate("/");
+      console.log(result.success);
+      toast.success("Login Successful! Welcome", {
+        position: "top-right",
+        autoClose: 1000, // Auto close after 2 seconds
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } else {
       setError(result.message);
-      alert(result.message);
+      toast.error(" Login Failed ! Please Enter Correctly..", {
+        position: "top-right",
+        autoClose: 1000,
+        theme: "colored",
+      });
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className="container">
         <div className="login-section">
           <div className="login-content">

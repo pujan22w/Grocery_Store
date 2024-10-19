@@ -1,7 +1,8 @@
 // src/context/AuthContext.jsx
 import React, { createContext, useState, useEffect } from "react";
 import axios from "../lib/axios"; // Custom Axios instance
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // Create the AuthContext
 export const AuthContext = createContext();
 
@@ -9,6 +10,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(); // User information
   const [isAuth, setIsAuth] = useState(false);
+  // const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true); // Loading state
 
@@ -48,9 +50,19 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post("http://localhost:8000/api/v1/users/logout");
+      toast.success("Logout Successful!!!", {
+        position: "top-right",
+        autoClose: 500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
       setUser(null);
       setIsAuth(false);
     } catch (error) {
+      toast.error("Logout Successful!!!");
       console.error("Logout failed:", error);
     }
   };

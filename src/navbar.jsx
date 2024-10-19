@@ -3,6 +3,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "./login-process/loginauth.jsx";
 import { Link } from "react-router-dom";
 import { CartContext } from "./addtocart/CartContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./navbar.css";
 
 function NavBar() {
@@ -73,7 +75,7 @@ function NavBar() {
             </li>
           </ul>
         </div>
-
+        <ToastContainer />
         {/* Right Section: User Auth and Cart */}
         <div className="navbar-right">
           {isAuth ? (

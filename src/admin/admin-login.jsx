@@ -3,6 +3,8 @@ import { AdminAuthContext } from "./admin-auth.jsx";
 import { useNavigate } from "react-router-dom";
 import "./admin-login.css";
 import axios from "../lib/axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AdminLog() {
   const [email, setEmail] = useState("");
@@ -29,18 +31,49 @@ function AdminLog() {
       console.log(response.data.data.user.role == "admin");
       if (response.data.data.user.role === "admin") {
         adminlogin();
-        console.log("Navigating to admin panel...");
-        setSuccess("Login successful. Welcome Admin!");
+        toast.success("Login Successful! Welcome Admin", {
+          position: "top-right",
+          autoClose: 1000, // Auto close after 2 seconds
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          navigate("/admin/panel");
+        }, 1000);
+        // setSuccess("Login successful. Welcome Admin!");
 
-        navigate("/admin/panel");
+        // navigate("/admin/panel");
       } else {
+        toast.error("You are not a admin", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored", // Auto clos
+        });
         setError("You are not an admin.");
-        alert("You are not a admin");
+        // alert("You are not a admin");
       }
     } catch (error) {
       if (error.response) {
+        toast.error("You are not a admin", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored", // Auto clos
+        });
         setError(`Error 404 Found || "Login failed."`);
-        alert("Plaese enter correctly");
       } else if (error.request) {
         setError("No response from server. Please try again later.");
       } else {
@@ -51,6 +84,7 @@ function AdminLog() {
 
   return (
     <>
+      <ToastContainer />
       <div className="admin-header">
         <img src="../photos\grocery-store.jpg" alt="logo-image" />
         <h4>Admin Login </h4>
@@ -85,13 +119,6 @@ function AdminLog() {
           </button>
         </form>
       </div>
-
-      {error && (
-        <p className="error" style={{ color: "red" }}>
-          Plaese Enter correctly
-        </p>
-      )}
-      {success && <p style={{ color: "green" }}>{success}</p>}
     </>
   );
 }

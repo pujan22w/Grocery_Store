@@ -12,6 +12,8 @@ import AddOrder from "./AddOrder";
 import EditOrder from "./EditOrder.jsx";
 import axios from "../lib/axios.js";
 import "./AppComponent.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AppAdminComponent() {
   const [categories, setCategories] = useState(() => {
@@ -102,12 +104,12 @@ function AppAdminComponent() {
       return e.status, e._id;
     })
   );
-   const updateOrderStatus = async (orderId, deliveryStatus) => {
+  const updateOrderStatus = async (orderId, deliveryStatus) => {
     try {
       const response = await axios.patch(
         `http://localhost:8000/api/v1/order/${deliveryStatus}/${orderId}`, // API endpoint to update the specific order
         {
-          status: deliveryStatus, 
+          status: deliveryStatus,
         }
       );
       console.log(response.data); // Handle the response as needed
@@ -115,66 +117,75 @@ function AppAdminComponent() {
       console.error("Error updating order status:", error);
     }
   };
-  
-  return (
-    <div className="app-container">
-      <Sidebar />
-      <div className="main-content">
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={<Dashboard products={products} categories={categories} />}
-          />
-          <Route path="/categories" element={<Categories />} />
-          <Route
-            path="/add-product"
-            element={
-              <AddProduct
-                categories={categories}
-                addProduct={addProduct}
-                products={products}
-              />
-            }
-          />
 
-          <Route
-            path="/all-products"
-            element={
-              <AllProducts products={products} deleteProduct={deleteProduct} />
-            }
-          />
-          <Route
-            path="/edit-product/:id"
-            element={
-              <EditProduct
-                products={products}
-                updateOrderStatus={updateOrderStatus}
-              />
-            }
-          />
-          <Route
-            path="/all-order"
-            element={
-              <AllOrders
-                orders={orders}
-                categories={categories}
-                updateProduct={updateProduct}
-              />
-            }
-          />
-          <Route
-            path="/edit-order/:id"
-            element={
-              <EditOrder
-                orders={orders}
-                categories={categories}
-                updateOrderStatus={updateOrderStatus}
-              />
-            }
-          />
-        </Routes>
+  return (
+    <>
+    
+      <div className="app-container">
+        <Sidebar />
+        <div className="main-content">
+          <Routes>
+            <Route
+              path="/dashboard"
+              element={
+                <Dashboard products={products} categories={categories} />
+              }
+            />
+            <Route path="/categories" element={<Categories />} />
+            <Route
+              path="/add-product"
+              element={
+                <AddProduct
+                  categories={categories}
+                  addProduct={addProduct}
+                  products={products}
+                />
+              }
+            />
+
+            <Route
+              path="/all-products"
+              element={
+                <AllProducts
+                  products={products}
+                  deleteProduct={deleteProduct}
+                />
+              }
+            />
+            <Route
+              path="/edit-product/:id"
+              element={
+                <EditProduct
+                  products={products}
+                  updateOrderStatus={updateOrderStatus}
+                />
+              }
+            />
+            <Route
+              path="/all-order"
+              element={
+                <AllOrders
+                  orders={orders}
+                  categories={categories}
+                  updateProduct={updateProduct}
+                />
+              }
+            />
+            <Route
+              path="/edit-order/:id"
+              element={
+                <EditOrder
+                  orders={orders}
+                  categories={categories}
+                  updateOrderStatus={updateOrderStatus}
+                />
+              }
+            />
+          </Routes>
+          <ToastContainer />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

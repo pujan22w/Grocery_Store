@@ -12,7 +12,7 @@ export const AdminAuthProvider = ({ children }) => {
 
   const adminlogin = () => {
     setIsAdminAuth(true);
-    console.log("admin true");
+    // console.log("admin true");
   };
 
   const adminlogout = () => {
