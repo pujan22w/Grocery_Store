@@ -108,14 +108,28 @@ function Product() {
   // Handle Add to Cart
   const handleAddToCartClick = (product) => {
     if (isAuth) {
-      addToCart(product);
-      toast.success(`${product.productname} added to cart!`, {
-        position: "top-right",
-        className: "notification",
-      });
-    } else {
-      toast.error("Please log in to add items to the cart.");
-      navigate("/login");
+      if (!product.toastShown) {
+        toast.success(`${product.productname} added to cart!`, {
+          position: "top-right",
+          className: "notification",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+
+        // Mark the product as having shown the toast
+        product.toastShown = true;
+        setTimeout(() => {
+          addToCart(product);
+        }, 1000);
+      } else {
+        toast.error("Please log in to add items to the cart.");
+        navigate("/login");
+      }
     }
   };
   return (
@@ -129,11 +143,11 @@ function Product() {
         </div>
       </header>
       <ToastContainer />
-      {notification && (
+      {/* {notification && (
         <div className="notification">
           <p>{notification}</p>
         </div>
-      )}
+      )} */}
 
       {/* <!-- Search Bar Section --> */}
       <div className="search-bar-container">

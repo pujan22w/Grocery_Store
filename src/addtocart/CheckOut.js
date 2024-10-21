@@ -53,9 +53,21 @@ function CheckOut() {
         );
 
         if (response.status === 201 || response.status === 200) {
-          toast.success("Order placed successfully!");
-          clearCart();
-          navigate("/order-confirmation"); // Redirect to home or order confirmation page
+          toast.success("Order placed successfully!", {
+            position: "top-right",
+            autoClose: 1000, // Auto close after 2 seconds
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setInterval(() => {
+            clearCart();
+            navigate("/order-confirmation");
+          }, 1000);
+          // Redirect to home or order confirmation page
         } else {
           toast.error("Failed to place order. Please try again.");
         }
@@ -79,100 +91,103 @@ function CheckOut() {
   }
 
   return (
-    <div className="checkout-container">
-      <h2>Checkout</h2>
+    <>
+      <ToastContainer />
+      <div className="checkout-container">
+        <h2>Checkout</h2>
 
-      {cartItems.length === 0 ? (
-        <p>
-          Your cart is empty. Please add products to your cart before proceeding
-          to checkout.
-        </p>
-      ) : (
-        <>
-          <table className="checkout-table">
-            <thead>
-              <tr>
-                <th>Product Image</th>
-                <th>Product Name</th>
-                <th>Unit Price (Rs.)</th>
-                <th>Quantity</th>
-                <th>Total Price (Rs.)</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item) => (
-                <tr key={item._id}>
-                  <td>
-                    <img
-                      src={item.productImage}
-                      alt={item.productname}
-                      className="checkout-product-image"
-                    />
-                  </td>
-                  <td className="product-name">{item.productname}</td>
-                  <td>{item.price.toFixed(2)}</td>
-                  <td>{item.quantity}</td>
-                  <td>{(item.price * item.quantity).toFixed(2)}</td>
-                  <td>
-                    <button
-                      onClick={() => removeFromCart(item._id)}
-                      className="remove-button"
-                    >
-                      Remove
-                    </button>
-                  </td>
+        {cartItems.length === 0 ? (
+          <p>
+            Your cart is empty. Please add products to your cart before
+            proceeding to checkout.
+          </p>
+        ) : (
+          <>
+            <table className="checkout-table">
+              <thead>
+                <tr>
+                  <th>Product Image</th>
+                  <th>Product Name</th>
+                  <th>Unit Price (Rs.)</th>
+                  <th>Quantity</th>
+                  <th>Total Price (Rs.)</th>
+                  <th>Remove</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {cartItems.map((item) => (
+                  <tr key={item._id}>
+                    <td>
+                      <img
+                        src={item.productImage}
+                        alt={item.productname}
+                        className="checkout-product-image"
+                      />
+                    </td>
+                    <td className="product-name">{item.productname}</td>
+                    <td>{item.price.toFixed(2)}</td>
+                    <td>{item.quantity}</td>
+                    <td>{(item.price * item.quantity).toFixed(2)}</td>
+                    <td>
+                      <button
+                        onClick={() => removeFromCart(item._id)}
+                        className="remove-button"
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-          <div className="checkout-summary">
-            <h3>Total Amount: Rs.{totalPrice}</h3>
-          </div>
-
-          <form onSubmit={handleSubmit} className="payment-form">
-            <h3>Select Payment Method:</h3>
-            <div className="payment-methods">
-              <label>
-                <input
-                  type="radio"
-                  value="COD"
-                  checked={paymentMethod === "COD"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                />
-                <img
-                  src="photos\cashondelivery.png" // Add your image path here
-                  alt="Cash on Delivery"
-                  className={`payment-image ${
-                    paymentMethod === "COD" ? "selected" : ""
-                  }`}
-                />
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  value="eSewa"
-                  checked={paymentMethod === "eSewa"}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                />
-                <img
-                  src="photos\esewa_og.webp" // Add your image path here
-                  alt="eSewa"
-                  className={`payment-image ${
-                    paymentMethod === "eSewa" ? "selected" : ""
-                  }`}
-                />
-              </label>
+            <div className="checkout-summary">
+              <h3>Total Amount: Rs.{totalPrice}</h3>
             </div>
-            <ToastContainer />
-            <button type="submit" className="checkout-button-proceed">
-              Proceed to Payment
-            </button>
-          </form>
-        </>
-      )}
-    </div>
+
+            <form onSubmit={handleSubmit} className="payment-form">
+              <h3>Select Payment Method:</h3>
+              <div className="payment-methods">
+                <label>
+                  <input
+                    type="radio"
+                    value="COD"
+                    checked={paymentMethod === "COD"}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <img
+                    src="photos\cashondelivery.png" // Add your image path here
+                    alt="Cash on Delivery"
+                    className={`payment-image ${
+                      paymentMethod === "COD" ? "selected" : ""
+                    }`}
+                  />
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    value="eSewa"
+                    checked={paymentMethod === "eSewa"}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                  />
+                  <img
+                    src="photos\esewa_og.webp" // Add your image path here
+                    alt="eSewa"
+                    className={`payment-image ${
+                      paymentMethod === "eSewa" ? "selected" : ""
+                    }`}
+                  />
+                </label>
+              </div>
+
+              <button type="submit" className="checkout-button-proceed">
+                Proceed to Payment
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

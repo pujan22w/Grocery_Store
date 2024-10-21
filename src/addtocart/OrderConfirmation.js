@@ -1,7 +1,8 @@
 // src/checkout/OrderConfirmation.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import "./OrderConfirmation.css"; // Create this CSS file for styling
+import "./OrderConfirmation.css";
+ // Create this CSS file for styling
 
 function OrderConfirmation() {
   return (
