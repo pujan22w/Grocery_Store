@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "./login-process/loginauth.jsx";
 import { Link } from "react-router-dom";
 import { CartContext } from "./addtocart/CartContext";
-// import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./navbar.css";
 
@@ -39,6 +39,7 @@ function NavBar() {
 
   return (
     <>
+      <ToastContainer />
       <nav className="navbar">
         <div className="navbar-left">
           <Link to="/" className="logo-link" onClick={closeMenus}>
@@ -75,8 +76,9 @@ function NavBar() {
             </li>
           </ul>
         </div>
-        {/* <ToastContainer /> */}
+
         {/* Right Section: User Auth and Cart */}
+
         <div className="navbar-right">
           {isAuth ? (
             <div className="after-login">

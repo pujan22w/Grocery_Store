@@ -49,18 +49,25 @@ export const AuthProvider = ({ children }) => {
   // Function to handle user logout
   const logout = async () => {
     try {
-      await axios.post("http://localhost:8000/api/v1/users/logout");
-      toast.success("Logout Successful!!!", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
-      setUser(null);
-      setIsAuth(false);
+      let response = await axios.post(
+        "http://localhost:8000/api/v1/users/logout"
+      );
+      console.log(response.data.statusCode);
+      if (response.data.statusCode == 200) {
+        toast.success("Logout Successful!!!", {
+          position: "top-right",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          setUser(null);
+          setIsAuth(false);
+        }, 500);
+      }
     } catch (error) {
       toast.error("Logout Successful!!!");
       console.error("Logout failed:", error);

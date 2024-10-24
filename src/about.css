@@ -11,7 +11,8 @@
   display: flex;
   justify-content: space-around;
   margin: 20px 0;
-  flex-wrap: wrap; /* Allow items to wrap */
+  flex-wrap: wrap;
+  text-align: center; /* Allow items to wrap */
 }
 
 .offer {
@@ -28,6 +29,77 @@
 .offer:hover {
   transform: translateY(-10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+/* Container styling */
+.containerss {
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Heading and paragraph styling */
+.mission {
+  font-size: 2rem;
+  color: #008080; /* Teal color */
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Grid layout for cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card styling */
+.card {
+  background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon styling */
+.icon {
+  font-size: 3rem;
+  color: #008080; /* Teal color */
+  margin-bottom: 1rem;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.fade-delay {
+  animation-delay: 0.5s;
 }
 
 .team {

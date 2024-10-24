@@ -34,7 +34,7 @@ function AppAdminComponent() {
     };
     productValue();
   }, []);
-  // const [id, setID]=useState([]);
+  const [id, setID] = useState([]);
   const productId = products.map((e) => {
     return e._id;
   });
@@ -56,7 +56,7 @@ function AppAdminComponent() {
       );
       console.log("Response Data", response.data);
 
-      if (response.status === 200 || response.status === 204) {
+      if (response.status === 200 || response.status === 201) {
         // Successfully deleted
         // Proceed to update the UI
         const newProducts = products.filter(
@@ -105,9 +105,10 @@ function AppAdminComponent() {
     })
   );
   const updateOrderStatus = async (orderId, deliveryStatus) => {
+    console.log(deliveryStatus);
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/order/${deliveryStatus}/${orderId}`, // API endpoint to update the specific order
+        `http://localhost:8000/api/v1/order/mange/${orderId}`,
         {
           status: deliveryStatus,
         }
@@ -120,7 +121,6 @@ function AppAdminComponent() {
 
   return (
     <>
-    
       <div className="app-container">
         <Sidebar />
         <div className="main-content">
@@ -157,7 +157,8 @@ function AppAdminComponent() {
               element={
                 <EditProduct
                   products={products}
-                  updateOrderStatus={updateOrderStatus}
+                  categories={categories}
+                  updateProduct={updateProduct}
                 />
               }
             />

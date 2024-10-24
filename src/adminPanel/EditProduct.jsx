@@ -3,22 +3,26 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "../lib/axios.js";
 import "./EditProduct.css";
-
-const EditProduct = ({ products, categories, updateProduct }) => {
+import { toast, ToastContainer } from "react-toastify";
+const EditProduct = ({ categories, updateProduct }) => {
   const { id } = useParams();
   const productToEdit = id;
+  // console.log(productToEdit);
   console.log(productToEdit);
   const navigate = useNavigate();
-  const [ProductData, setProductData] = useState([]);
+  const [ProductData, setProductData] = useState(null);
   useEffect(() => {
-    const dataaa = async () => {
-      const response = await axios.get(
-        `http://localhost:8000/api/v1/product/${productToEdit}`
-      );
-      setProductData(response.data.data);
-    };
-    dataaa();
-  }, []);
+    if (productToEdit) {
+      const dataaa = async () => {
+        const response = await axios.get(
+          `http://localhost:8000/api/v1/product/${productToEdit}`
+        );
+        setProductData(response.data.data);
+        console.log(response.data);
+      };
+      dataaa();
+    }
+  }, [productToEdit]);
   console.log(ProductData);
 
   const [product, setProduct] = useState({
@@ -59,7 +63,7 @@ const EditProduct = ({ products, categories, updateProduct }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(productToEdit);
     // Prepare form data
     try {
       const response = await axios.patch(
@@ -73,11 +77,13 @@ const EditProduct = ({ products, categories, updateProduct }) => {
           stock: product.stock,
         }
       );
-      const updatedProduct = response.data.data;
+      console.log(response.data.statusCode);
+      if (response.data.statusCode == 200) {
+        const updatedProducts = response.data.data;
 
-      updateProduct(ProductData, updatedProduct);
-      alert("Product Updated successfully");
-      navigate("/admin/all-products");
+        updateProduct(productToEdit, updatedProducts);
+        navigate("/admin/all-products");
+      }
       // Optionally, redirect or show a success message
     } catch (err) {
       console.error("Error updating the product:", err);
@@ -92,115 +98,118 @@ const EditProduct = ({ products, categories, updateProduct }) => {
       </div>
     );
   }
-
+  console.log(product);
   return (
-    <div className="edit-product-container">
-      <h2>Edit Product</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Product Name */}
-        <div className="form-group">
-          <label>Product Name:</label>
-          <input
-            type="text"
-            name="productname"
-            value={product.productname}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        {/* Category */}
-        <div className="form-group">
-          <label>Category:</label>
-          <select
-            name="category"
-            value={product.category}
-            onChange={handleChange}
-            required
-          >
-            {categories.map((cat, idx) => (
-              <option key={idx} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Image Upload */}
-        <div className="form-group">
-          <label>Image:</label>
-          <input type="file" accept="image/*" disabled />
-          {product.image && (
-            <img
-              src={product.productImage}
-              alt="Product"
-              className="product-image-preview"
+    <>
+      <ToastContainer />
+      <div className="edit-product-container">
+        <h2>Edit Product</h2>
+        <form onSubmit={handleSubmit}>
+          {/* Product Name */}
+          <div className="form-group">
+            <label>Product Name:</label>
+            <input
+              type="text"
+              name="productname"
+              value={product.productname}
+              onChange={handleChange}
+              required
             />
-          )}
-        </div>
+          </div>
 
-        {/* Price */}
-        <div className="form-group">
-          <label>Price (Rs):</label>
-          <input
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Category */}
+          <div className="form-group">
+            <label>Category:</label>
+            <select
+              name="category"
+              value={product.category}
+              onChange={handleChange}
+              required
+            >
+              {categories.map((cat, idx) => (
+                <option key={idx} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        {/* Weight */}
-        <div className="form-group">
-          <label>Weight:</label>
-          <input
-            type="text"
-            name="weight"
-            value={product.weight}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Stock:</label>
-          <input
-            type="number"
-            name="stock"
-            value={product.stock}
-            onChange={handleChange}
-            min="0"
-            required
-            placeholder="Enter Stock"
-          />
-        </div>
-        {/* In Stock */}
-        <div className="form-group checkbox-group">
-          <input
-            type="checkbox"
-            name="isavailable"
-            checked={product.isavailable}
-            onChange={handleChange}
-            id="isAvailable"
-          />
-          <label htmlFor="inStockCheckEdit">Is Available</label>
-        </div>
+          {/* Image Upload */}
+          <div className="form-group">
+            <label>Image:</label>
+            <input type="file" accept="image/*" disabled />
+            {product.image && (
+              <img
+                src={product.productImage}
+                alt="Product"
+                className="product-image-preview"
+              />
+            )}
+          </div>
 
-        {/* Buttons */}
-        <div className="form-buttons">
-          <button type="submit" className="save-btn">
-            Update
-          </button>
-          <button
-            type="button"
-            className="cancel-btn"
-            onClick={() => navigate("/admin/all-products")}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+          {/* Price */}
+          <div className="form-group">
+            <label>Price (Rs):</label>
+            <input
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* Weight */}
+          <div className="form-group">
+            <label>Weight:</label>
+            <input
+              type="text"
+              name="weight"
+              value={product.weight}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Stock:</label>
+            <input
+              type="number"
+              name="stock"
+              value={product.stock}
+              onChange={handleChange}
+              min="0"
+              required
+              placeholder="Enter Stock"
+            />
+          </div>
+          {/* In Stock */}
+          <div className="form-group checkbox-group">
+            <input
+              type="checkbox"
+              name="isavailable"
+              checked={product.isavailable}
+              onChange={handleChange}
+              id="isAvailable"
+            />
+            <label htmlFor="inStockCheckEdit">Is Available</label>
+          </div>
+
+          {/* Buttons */}
+          <div className="form-buttons">
+            <button type="submit" className="save-btn">
+              Update
+            </button>
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={() => navigate("/admin/all-products")}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

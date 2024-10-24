@@ -71,7 +71,7 @@
 .load-buttons {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 50px 0px 0px 0px;
   gap: 10px;
 }
 
@@ -113,17 +113,43 @@
   max-width: 1200px; /* Maximum width of the product grid */
   margin: 0 auto; /* Center the grid on the page */
 }
+@keyframes crazyBounce {
+  0% {
+    transform: scale(0.95) translateY(10px) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) translateY(-10px) rotate(10deg);
+  }
+  50% {
+    transform: scale(1.1) translateY(0) rotate(-10deg);
+  }
+  75% {
+    transform: scale(1.05) translateY(5px) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+}
 
+.products-item.animate-product {
+  animation: crazyBounce 1s ease-in-out forwards;
+}
 .products-item {
   background-color: white; /* Background color of each product card */
   padding: 20px; /* Inner spacing for each product card */
   border-radius: 10px; /* Rounded corners for the product card */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
   transition: transform 0.3s; /* Smooth hover animation */
+  opacity: 0px;
+  transform: translateY(20px);
 }
-
+.products-item.animate-product {
+  opacity: 1;
+  transform: translateY(0); /* When the product is in the viewport */
+}
 .products-item:hover {
-  transform: translateY(-5px); /* Lift the product card slightly when hovered */
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .products-item img {

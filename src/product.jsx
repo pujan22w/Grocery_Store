@@ -11,7 +11,7 @@ import FetchJuice from "./fetchApi/fetchJuice.jsx";
 import { CartContext } from "./addtocart/CartContext.js"; // Import the CartContext
 import { Footer } from "./footer.js";
 import { AuthContext } from "./login-process/loginauth.jsx"; // Import AuthContext
-import { toast, ToastContainer } from "react-toastify"; // For notifications
+import { toast } from "react-toastify"; // For notifications
 import "react-toastify/dist/ReactToastify.css"; // Import react-toastify styles
 import { useNavigate } from "react-router-dom";
 function Product() {
@@ -23,7 +23,6 @@ function Product() {
   const [error, setError] = useState(""); // Error state
   const [searchTerm, setSearchTerm] = useState(""); // Search term
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [notification, setNotification] = useState(""); // Notification state
 
   const { addToCart } = useContext(CartContext); // Access addToCart from CartContext
   const { isAuth } = useContext(AuthContext); // Access authentication status
@@ -108,30 +107,44 @@ function Product() {
   // Handle Add to Cart
   const handleAddToCartClick = (product) => {
     if (isAuth) {
-      if (!product.toastShown) {
-        toast.success(`${product.productname} added to cart!`, {
-          position: "top-right",
-          className: "notification",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-
-        // Mark the product as having shown the toast
-        product.toastShown = true;
-        setTimeout(() => {
-          addToCart(product);
-        }, 1000);
-      } else {
-        toast.error("Please log in to add items to the cart.");
-        navigate("/login");
-      }
+      toast.success(`${product.productname} added to cart!`, {
+        position: "top-right",
+        className: "notification",
+        autoClose: 200,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      addToCart(product);
+    } else {
+      toast.error("Please log in to add items to the cart.");
+      navigate("/login");
     }
   };
+  // for animation
+  useEffect(() => {
+    const productItems = document.querySelectorAll(".products-item");
+
+    const handleScrollAnimation = () => {
+      productItems.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+          item.classList.add("animate-product");
+        } else {
+          item.classList.remove("animate-product");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScrollAnimation);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollAnimation);
+    };
+  }, []);
   return (
     <>
       {/* <!-- Header Section --> */}
@@ -142,12 +155,6 @@ function Product() {
           <p>Fresh groceries delivered to your door</p>
         </div>
       </header>
-      <ToastContainer />
-      {/* {notification && (
-        <div className="notification">
-          <p>{notification}</p>
-        </div>
-      )} */}
 
       {/* <!-- Search Bar Section --> */}
       <div className="search-bar-container">

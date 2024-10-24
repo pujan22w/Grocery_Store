@@ -9,7 +9,52 @@ function About() {
       <header className="hero">
         <h2>Fresh Groceries Delivered To Your Doorstep!</h2>
       </header>
+      <section class="containerss">
+        <div class="fade-in">
+          <h2 className="mission">Our Mission</h2>
+          <p>
+            At Puzu Grocery Store, our mission is to make fresh, high-quality
+            groceries easily accessible to everyone, promoting healthy living
+            and sustainability.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card fade-in fade-delay">
+            <i class="icon fas fa-apple-alt"></i>
+            <h3>Freshness</h3>
+            <p>
+              We ensure that only the freshest products reach your doorstep.
+            </p>
+          </div>
+          <div class="card fade-in fade-delay">
+            <i class="icon fas fa-leaf"></i>
+            <h3>Quality</h3>
+            <p>
+              Every product undergoes stringent quality checks to meet our high
+              standards.
+            </p>
+          </div>
+          <div class="card fade-in fade-delay">
+            <i class="icon fas fa-smile"></i>
+            <h3>Customer Satisfaction</h3>
+            <p>
+              Our priority is ensuring that every customer is happy with their
+              shopping experience.
+            </p>
+          </div>
+          <div class="card fade-in fade-delay">
+            <i class="icon fas fa-recycle"></i>
+            <h3>Sustainability</h3>
+            <p>
+              We support eco-friendly practices and work with local farmers.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="offers">
+        <h2 className="offerh">Our Team</h2>
         <div className="offer">
           <h3>24 Hour Delivery</h3>
           <p>
@@ -34,7 +79,7 @@ function About() {
       </section>
 
       <section className="team">
-        <h2>Our Team</h2>
+        <h2 className="teamh">Our Team</h2>
         <div className="team-member ceo">
           <h3>Arpin Bhat - CEO</h3>
           <p>

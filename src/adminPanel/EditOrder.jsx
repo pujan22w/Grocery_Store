@@ -6,12 +6,13 @@ const EditOrder = ({ orders, updateOrderStatus }) => {
   const { id } = useParams(); // Order ID from URL
   const navigate = useNavigate();
   const order = orders.find((order) => order._id === id); // Find the order by ID
-  const [deliveryStatus, setDeliveryStatus] = useState("Pending");
+  const [deliveryStatus, setDeliveryStatus] = useState("PENDING");
   useEffect(() => {
     if (order) {
       setDeliveryStatus(order.status); // Update delivery status when the order is found
     }
   }, [order]);
+
   useEffect(() => {
     if (!order) {
       alert("Order not found!");
@@ -59,10 +60,9 @@ const EditOrder = ({ orders, updateOrderStatus }) => {
             onChange={(e) => setDeliveryStatus(e.target.value)}
             required
           >
-            <option value="Pending">Pending</option>
-            <option value="Shipped">Shipped</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Cancelled">Cancelled</option>
+            <option value="PENDING">Pending</option>
+            <option value="SHIPPED">Shipped</option>
+            <option value="DELIVERED">Delivered</option>
           </select>
         </div>
 

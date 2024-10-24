@@ -12,12 +12,12 @@ function OrderConfirmation() {
         Your order has been placed successfully. You will receive a confirmation
         email shortly.
       </p>
-      <Link to="/order" className="see-order-link">
+      <a href="/order" className="see-order-link">
         See Order
-      </Link>
-      <Link to="/" className="back-home-link">
+      </a>
+      <a href="/" className="back-home-link">
         Back to Home
-      </Link>
+      </a>
     </div>
   );
 }

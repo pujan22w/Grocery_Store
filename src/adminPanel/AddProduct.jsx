@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddProduct.css";
 import axios from "../lib/axios";
-
+import { toast, ToastContainer } from "react-toastify";
 const AddProduct = ({ categories, addProduct, products }) => {
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const AddProduct = ({ categories, addProduct, products }) => {
     isavailable: true,
     stock: "",
   });
-
+  console.log(product);
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -76,13 +76,24 @@ const AddProduct = ({ categories, addProduct, products }) => {
         "http://localhost:8000/api/v1/product/register",
         formData
       );
-      formData.forEach((value, key) => {
-        console.log(`${key}: ${value}`);
-      });
-      navigate("/admin/all-products");
-      if (response.ok) {
-        alert("Product added successfully!");
-        navigate("/admin/all-products");
+      console.log(response);
+      if (response.status == 200 || response.status == 201) {
+        toast.success("Product added successfully", {
+          position: "top-right",
+          // className: "notification",
+          autoClose: 800,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setInterval(() => {
+          addProduct({ ...product, name: trimmedName });
+          navigate("/admin/add-product");
+        }, 1000);
+        // alert("Product added successfully!");
       } else {
         const errorData = await response.json();
         setError(errorData.message || "An error occurred");
@@ -92,130 +103,133 @@ const AddProduct = ({ categories, addProduct, products }) => {
     }
 
     // Proceed to add the product
-    addProduct({ ...product, name: trimmedName });
-    alert("Product added successfully!");
-    navigate("/admin/all-products");
+
+    // alert("Product added successfully!");
+    // navigate("/admin/all-products");
   };
 
   return (
-    <div className="add-product-container">
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit} className="add-product-form">
-        {/* Product Name */}
-        <div className="form-group" key={product}>
-          <label>Product Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={product.productname}
-            onChange={handleChange}
-            required
-            placeholder="Enter product name"
-          />
-        </div>
-
-        {/* Category */}
-        <div className="form-group">
-          <label>Category:</label>
-          <select
-            name="category"
-            value={product.category}
-            onChange={handleChange}
-            required
-          >
-            {categories.map((cat, idx) => (
-              <option key={idx} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Image Upload */}
-        <div className="form-group">
-          <label>Image:</label>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-          />
-          {product.productImage && (
-            <img
-              src={product.productImage}
-              alt="Product"
-              className="product-image-preview"
+    <>
+      <ToastContainer />
+      <div className="add-product-container">
+        <h2>Add Product</h2>
+        <form onSubmit={handleSubmit} className="add-product-form">
+          {/* Product Name */}
+          <div className="form-group" key={product}>
+            <label>Product Name:</label>
+            <input
+              type="text"
+              name="name"
+              value={product.name}
+              onChange={handleChange}
+              required
+              placeholder="Enter product name"
             />
-          )}
-        </div>
+          </div>
 
-        {/* Price */}
-        <div className="form-group">
-          <label>Price:</label>
-          <input
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={handleChange}
-            required
-            placeholder="Enter price"
-          />
-        </div>
+          {/* Category */}
+          <div className="form-group">
+            <label>Category:</label>
+            <select
+              name="category"
+              value={product.category}
+              onChange={handleChange}
+              required
+            >
+              {categories.map((cat, idx) => (
+                <option key={idx} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        {/* Weight */}
-        <div className="form-group">
-          <label>Weight:</label>
-          <input
-            type="text"
-            name="weight"
-            value={product.weight}
-            onChange={handleChange}
-            required
-            placeholder="Enter weight"
-          />
-        </div>
-        {/* In Stock */}
-        <div className="form-group">
-          <label>Stock:</label>
-          <input
-            type="number"
-            name="stock"
-            value={product.stock}
-            onChange={handleChange}
-            required
-            placeholder="Enter Stock"
-          />
-        </div>
+          {/* Image Upload */}
+          <div className="form-group">
+            <label>Image:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+            />
+            {product.productImage && (
+              <img
+                src={product.productImage}
+                alt="Product"
+                className="product-image-preview"
+              />
+            )}
+          </div>
 
-        <div className="form-group checkbox-group">
-          <input
-            type="checkbox"
-            name="is-available"
-            checked={product.isavailable}
-            onChange={handleChange}
-            id="is-available"
-          />
-          <label htmlFor="is-available">Is Available</label>
-        </div>
+          {/* Price */}
+          <div className="form-group">
+            <label>Price:</label>
+            <input
+              type="number"
+              name="price"
+              value={product.price}
+              onChange={handleChange}
+              required
+              placeholder="Enter price"
+            />
+          </div>
 
-        {/* Display Error Message */}
-        {error && <p className="error-message">{error}</p>}
+          {/* Weight */}
+          <div className="form-group">
+            <label>Weight:</label>
+            <input
+              type="text"
+              name="weight"
+              value={product.weight}
+              onChange={handleChange}
+              required
+              placeholder="Enter weight"
+            />
+          </div>
+          {/* In Stock */}
+          <div className="form-group">
+            <label>Stock:</label>
+            <input
+              type="number"
+              name="stock"
+              value={product.stock}
+              onChange={handleChange}
+              required
+              placeholder="Enter Stock"
+            />
+          </div>
 
-        {/* Buttons */}
-        <div className="form-buttons">
-          <button type="submit" className="save-btn">
-            Save
-          </button>
-          <button
-            type="button"
-            className="cancel-btn"
-            onClick={() => navigate("/admin/all-products")}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="form-group checkbox-group">
+            <input
+              type="checkbox"
+              name="is-available"
+              checked={product.isavailable}
+              onChange={handleChange}
+              id="is-available"
+            />
+            <label htmlFor="is-available">Is Available</label>
+          </div>
+
+          {/* Display Error Message */}
+          {error && <p className="error-message">{error}</p>}
+
+          {/* Buttons */}
+          <div className="form-buttons">
+            <button type="submit" className="save-btn">
+              Save
+            </button>
+            <button
+              type="button"
+              className="cancel-btn"
+              onClick={() => navigate("/admin/all-products")}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
